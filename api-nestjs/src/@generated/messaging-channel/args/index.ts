@@ -1,0 +1,12 @@
+export { CreateManyMessagingChannelArgs } from './create-many-messaging-channel.args';
+export { CreateOneMessagingChannelArgs } from './create-one-messaging-channel.args';
+export { DeleteManyMessagingChannelArgs } from './delete-many-messaging-channel.args';
+export { DeleteOneMessagingChannelArgs } from './delete-one-messaging-channel.args';
+export { FindFirstMessagingChannelArgs } from './find-first-messaging-channel.args';
+export { FindManyMessagingChannelArgs } from './find-many-messaging-channel.args';
+export { FindUniqueMessagingChannelArgs } from './find-unique-messaging-channel.args';
+export { MessagingChannelAggregateArgs } from './messaging-channel-aggregate.args';
+export { MessagingChannelGroupByArgs } from './messaging-channel-group-by.args';
+export { UpdateManyMessagingChannelArgs } from './update-many-messaging-channel.args';
+export { UpdateOneMessagingChannelArgs } from './update-one-messaging-channel.args';
+export { UpsertOneMessagingChannelArgs } from './upsert-one-messaging-channel.args';

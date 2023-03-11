@@ -1,0 +1,54 @@
+fragment promotionPlansFields on PromotionPlan {
+	promotion_plan_id
+	created_at
+	updated_at
+	deleted_at
+	title
+	text
+	price
+	validity_period
+	promotion_plan_type
+	ParentPromotionPlan {
+		...ParentChildFields
+	}
+	ChildPromotionPlan {
+		...ParentChildFields
+	}
+}
+
+fragment ParentChildFields on PromotionPlanRelation {
+	parent_promotion_plan_id
+	child_promotion_plan_id
+	count
+	reccurence
+}
+
+query FindAllPromotionPlans($where: PromotionPlanWhereInput, $orderBy: [PromotionPlanOrderByWithRelationInput!], $cursor: PromotionPlanWhereUniqueInput, $take: Int, $skip: Int) {
+	findAllPromotionPlans(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take, skip: $skip) {
+		...promotionPlansFields
+	}
+}
+
+query FindUniquePromotionPlan($where: PromotionPlanWhereUniqueInput!) {
+	findUniquePromotionPlan(where: $where) {
+		...promotionPlansFields
+	}
+}
+
+mutation CreatePromotionPlan($data: PromotionPlanCreateInput!) {
+	createPromotionPlan(data: $data) {
+		...promotionPlansFields
+	}
+}
+
+mutation UpdatePromotionPlan($data: PromotionPlanUpdateInput!, $id: Int!) {
+	updatePromotionPlan(data: $data, where: { promotion_plan_id: $id }) {
+		...promotionPlansFields
+	}
+}
+
+mutation RemovePromotionPlan($id: Int!) {
+	removePromotionPlan(where: { promotion_plan_id: $id }) {
+		promotion_plan_id
+	}
+}

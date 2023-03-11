@@ -1,0 +1,12 @@
+export { AdHouseAggregateArgs } from './ad-house-aggregate.args';
+export { AdHouseGroupByArgs } from './ad-house-group-by.args';
+export { CreateManyAdHouseArgs } from './create-many-ad-house.args';
+export { CreateOneAdHouseArgs } from './create-one-ad-house.args';
+export { DeleteManyAdHouseArgs } from './delete-many-ad-house.args';
+export { DeleteOneAdHouseArgs } from './delete-one-ad-house.args';
+export { FindFirstAdHouseArgs } from './find-first-ad-house.args';
+export { FindManyAdHouseArgs } from './find-many-ad-house.args';
+export { FindUniqueAdHouseArgs } from './find-unique-ad-house.args';
+export { UpdateManyAdHouseArgs } from './update-many-ad-house.args';
+export { UpdateOneAdHouseArgs } from './update-one-ad-house.args';
+export { UpsertOneAdHouseArgs } from './upsert-one-ad-house.args';

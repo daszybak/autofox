@@ -1,0 +1,128 @@
+fragment userInfoFields on User {
+	name
+	user_sub
+}
+
+fragment adAutoFields on AdAuto {
+	ad_auto_id
+	condition_type_cid
+	vehicle_type_cid
+	fuel_type_cid
+	transmission_type_cid
+	make_cid
+	model_cid
+	variant_cid
+	body_type_cid
+	color_interior_cid
+	color_exterior_cid
+	emission_class_cid
+	conditioning_cid
+	year
+	km
+	power_kw
+	registered_until
+	doors_num
+	seats_num
+	is_first_owner
+	is_service_book_available
+	is_vehicle_garaged
+	engine_displacement_cm3
+	battery_capacity_kwh
+}
+
+fragment fileFields on File {
+	file_id
+	filename
+	filesize
+	code
+	path
+}
+
+fragment userDefinedAdFields on Ad {
+	title
+	text
+	coords_latitude
+	coords_longitude
+	coords_radius
+	address
+	price_eurocent
+	is_sold
+}
+
+fragment adminDefinedField on Ad {
+	moderation_flag
+}
+
+fragment adFields on Ad {
+	ad_id
+	created_at
+	updated_at
+	deleted_at
+	price_rating
+	user {
+		...userInfoFields
+	}
+	...userDefinedAdFields
+	...adminDefinedField
+}
+
+fragment adPromotionField on AdPromotion {
+	promotion_plan_id
+}
+
+fragment adAdAutoFileFields on Ad {
+	...adFields
+	files {
+		...fileFields
+	}
+	ad_auto {
+		...adAutoFields
+	}
+	AdPromotion {
+		...adPromotionField
+	}
+}
+
+mutation CreateAd($data: AdCreateWithoutUserInput!) {
+	createAd(data: $data) {
+		...adAdAutoFileFields
+	}
+}
+
+query FindAllAds($where: AdWhereInput, $orderBy: [AdOrderByWithRelationInput!], $cursor: AdWhereUniqueInput, $take: Int, $skip: Int) {
+	findAllAds(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take, skip: $skip) {
+		...adAdAutoFileFields
+	}
+}
+
+query FindUniqueAdWhereAdIdEquals($where: AdWhereUniqueInput!) {
+	findUniqueAd(where: $where) {
+		...adAdAutoFileFields
+	}
+}
+
+query AggregateAdsWhere($where: AdWhereInput) {
+	aggregateAds(where: $where, _count: { ad_id: true }) {
+		_count {
+			ad_id
+		}
+	}
+}
+
+mutation removeAd($id: Int!) {
+	removeAd(where: { ad_id: $id }) {
+		ad_id
+	}
+}
+
+mutation updateAd($id: Int!, $data: AdUpdateInput!) {
+	updateAd(where: { ad_id: $id }, data: $data) {
+		...adAdAutoFileFields
+	}
+}
+
+query estimateAdPrice {
+	estimateAdPrice {
+		price_eurocent
+	}
+}

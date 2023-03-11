@@ -1,0 +1,12 @@
+export { AdPromotionAggregateArgs } from './ad-promotion-aggregate.args';
+export { AdPromotionGroupByArgs } from './ad-promotion-group-by.args';
+export { CreateManyAdPromotionArgs } from './create-many-ad-promotion.args';
+export { CreateOneAdPromotionArgs } from './create-one-ad-promotion.args';
+export { DeleteManyAdPromotionArgs } from './delete-many-ad-promotion.args';
+export { DeleteOneAdPromotionArgs } from './delete-one-ad-promotion.args';
+export { FindFirstAdPromotionArgs } from './find-first-ad-promotion.args';
+export { FindManyAdPromotionArgs } from './find-many-ad-promotion.args';
+export { FindUniqueAdPromotionArgs } from './find-unique-ad-promotion.args';
+export { UpdateManyAdPromotionArgs } from './update-many-ad-promotion.args';
+export { UpdateOneAdPromotionArgs } from './update-one-ad-promotion.args';
+export { UpsertOneAdPromotionArgs } from './upsert-one-ad-promotion.args';

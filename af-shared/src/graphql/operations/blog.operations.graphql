@@ -1,0 +1,39 @@
+fragment blogFields on Blog {
+	blog_id
+	created_at
+	updated_at
+	deleted_at
+	title
+	slug
+	text
+	moderation_flag
+}
+
+fragment userInfo on User {
+	user_sub
+	name
+}
+
+query FindAllBlogs($where: BlogWhereInput, $orderBy: [BlogOrderByWithRelationInput!], $cursor: BlogWhereUniqueInput, $take: Int, $skip: Int) {
+	findAllBlogs(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take, skip: $skip) {
+		...blogFields
+	}
+}
+
+mutation CreateBlog($data: BlogCreateWithoutUserInput!) {
+	createBlog(data: $data) {
+		...blogFields
+	}
+}
+
+mutation UpdateBlog($data: BlogUpdateInput!, $id: Int!) {
+	updateBlog(data: $data, where: { blog_id: $id }) {
+		...blogFields
+	}
+}
+
+mutation removeBlog($id: Int!) {
+	removeBlog(where: { blog_id: $id }) {
+		blog_id
+	}
+}

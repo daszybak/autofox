@@ -1,0 +1,75 @@
+{
+	"header": {
+		"nav": {
+			"sign-in": "Sign In",
+			"sign-out": "Sign Out",
+			"sign-up": "Sign Up",
+			"buy": "Buy",
+			"sell": "Create Ad",
+			"car": "Cars",
+			"moto": "Moto",
+			"van": "Van",
+			"other": "Other",
+			"my-searches": "My Searches",
+			"price-compare": "Price Compare",
+			"blog": "Blog",
+			"agents": "Agents",
+			"promotion-plans": "Promotion plans",
+			"messages": "Messages",
+			"analytics": "Analytics",
+			"favorites": "Favorites",
+			"notifications": "Notifications",
+			"settings": "Settings",
+			"my-ads": "My Ads",
+			"commercial": "Commercial",
+			"camper": "Campers",
+			"compare": "Compare",
+			"news": "News"
+		}
+	},
+	"filter": {
+		"search": "Search",
+		"advanced-search": "More Filters",
+		"condition_type_cid": "Condition",
+		"fuel_type_cid": "Fuel",
+		"make_cid": "Make",
+		"model_cid": "Model",
+		"transmission_type_cid": "Transmission",
+		"vehicle_type_cid": "Category",
+		"variant_cid": "Variant",
+		"body_type_cid": "Body Type",
+		"emission_class_cid": "Emission Class",
+		"conditioning_cid": "Air Conditioning",
+		"color_exterior_cid": "Exterior Color",
+		"color_interior_cid": "Interior Color",
+		"doors_num": "Nr of doors",
+		"seats_num": "Nr of seats",
+		"year": "Year",
+		"price_eurocent": "Price",
+		"power_kw": "Engine Power",
+		"km": "Mileage",
+		"registered_until": "Registration",
+		"is_first_owner": "First Owner",
+		"is_service_book_available": "Service Book",
+		"is_vehicle_garaged": "Garaged",
+		"engine_displacement_cm3": "Engine Displacement",
+		"battery_capacity_kwh": "Battery Capacity",
+		"WithImage": "Only ads with pictures",
+		"results": "results",
+		"from": "from",
+		"to": "to"
+	},
+	"agent-support": {
+		"title": "Ask our agent for help",
+		"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+		"cta": "View all",
+		"modal": {
+			"call": "Call us",
+			"write": "Write to us"
+		}
+	},
+	"ad": {
+		"more": "More"
+	},
+	"footer": {}
+}

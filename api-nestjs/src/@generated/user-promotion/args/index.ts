@@ -1,0 +1,12 @@
+export { CreateManyUserPromotionArgs } from './create-many-user-promotion.args';
+export { CreateOneUserPromotionArgs } from './create-one-user-promotion.args';
+export { DeleteManyUserPromotionArgs } from './delete-many-user-promotion.args';
+export { DeleteOneUserPromotionArgs } from './delete-one-user-promotion.args';
+export { FindFirstUserPromotionArgs } from './find-first-user-promotion.args';
+export { FindManyUserPromotionArgs } from './find-many-user-promotion.args';
+export { FindUniqueUserPromotionArgs } from './find-unique-user-promotion.args';
+export { UpdateManyUserPromotionArgs } from './update-many-user-promotion.args';
+export { UpdateOneUserPromotionArgs } from './update-one-user-promotion.args';
+export { UpsertOneUserPromotionArgs } from './upsert-one-user-promotion.args';
+export { UserPromotionAggregateArgs } from './user-promotion-aggregate.args';
+export { UserPromotionGroupByArgs } from './user-promotion-group-by.args';

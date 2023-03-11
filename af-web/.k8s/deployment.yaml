@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: af-web-deployment
+spec:
+  selector:
+    matchLabels:
+      app: af-web
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/path: '/metrics'
+        prometheus.io/port: '8080'
+      labels:
+        app: af-web
+    spec:
+      containers:
+        - name: af-web-app
+          image: autofox.azurecr.io/web:720
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              memory: '100Mi'
+              cpu: '150m'
+            limits:
+              memory: '150Mi'
+              cpu: '200m'

@@ -1,0 +1,79 @@
+fragment listAdFields on ListAd {
+	ad_id
+	list_id
+}
+
+fragment listFields on List {
+	list_id
+	list_type
+	title
+	search_params
+	is_notifiable_by_email
+	is_notifiable_by_push
+	is_notifiable_by_sms
+	user_sub
+	ListAd {
+		...listAdFields
+	}
+}
+
+mutation addToFavorites($where: AdWhereUniqueInput!) {
+	addToFavorites(where: $where) {
+		...listAdFields
+	}
+}
+
+mutation createListAd($data: ListAdCreateInput!) {
+	createListAd(data: $data) {
+		...listAdFields
+	}
+}
+
+mutation removeList($where: ListWhereUniqueInput!) {
+	removeList(where: $where)
+	# {
+	# ...listFields
+	# }
+}
+
+mutation createList($data: ListCreateInput!) {
+	createList(data: $data) {
+		...listFields
+	}
+}
+
+mutation updateList($data: ListUpdateInput!, $where: ListWhereUniqueInput!) {
+	updateList(data: $data, where: $where) {
+		...listFields
+	}
+}
+
+query findMyLists($where: ListWhereInput, $orderBy: [ListOrderByWithRelationInput!], $cursor: ListWhereUniqueInput, $take: Int, $skip: Int, $distinct: [ListScalarFieldEnum!]) {
+	findMyLists(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take, skip: $skip, distinct: $distinct) {
+		...listFields
+	}
+}
+
+query findOneList($where: ListWhereInput, $orderBy: [ListOrderByWithRelationInput!], $cursor: ListWhereUniqueInput, $take: Int, $skip: Int, $distinct: [ListScalarFieldEnum!]) {
+	findOneList(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take, skip: $skip, distinct: $distinct) {
+		...listFields
+	}
+}
+
+query findFavorites {
+	findOneList(where: { list_type: { equals: 0 } }) {
+		...listFields
+	}
+}
+
+mutation removeListAd($ad_id: Int!, $list_id: Int!) {
+	removeListAd(where: { ad_id_list_id: { ad_id: $ad_id, list_id: $list_id } }) {
+		...listAdFields
+	}
+}
+
+mutation createListAd($data: ListAdCreateInput!) {
+	createListAd(data: $data) {
+		...listAdFields
+	}
+}

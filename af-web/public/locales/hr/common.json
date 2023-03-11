@@ -1,0 +1,76 @@
+{
+	"header": {
+		"nav": {
+			"sign-in": "Prijavite se",
+			"sign-out": "Odjavi se",
+			"sign-up": "Registriraj se",
+			"buy": "Kupi",
+			"sell": "Prodaj",
+			"car": "Auti",
+			"moto": "Motocikli",
+			"van": "Kombiji",
+			"other": "Ostalo",
+			"favorites": "Favoriti",
+			"my-searches": "Moja pretraživanja",
+			"price-compare": "Usporedi cijene",
+			"blog": "Blog",
+			"agents": "Agenti",
+			"promotion-plans": "Promocijski plan",
+			"messages": "Poruke",
+			"analytics": "Analitika",
+			"notifications": "Notifikacije",
+			"settings": "Postavke",
+			"my-ads": "My oglasi",
+			"commercial": "Komercijalno",
+			"camper": "Kamper",
+			"compare": "Usporedi",
+			"news": "Vijesti",
+			"results": "rezultata"
+		}
+	},
+	"filter": {
+		"search": "Traži",
+		"advanced-search": "Više filtera",
+		"condition_type_cid": "Stanje",
+		"fuel_type_cid": "Gorivo",
+		"make_cid": "Marka",
+		"model_cid": "Model",
+		"transmission_type_cid": "Mjenač",
+		"vehicle_type_cid": "Kategorija",
+		"variant_cid": "Varijanta",
+		"body_type_cid": "Karoserija",
+		"emission_class_cid": "Ekološka norma",
+		"conditioning_cid": "Klima",
+		"color_exterior_cid": "Vanjska boja",
+		"color_interior_cid": "Unutrašnja boja",
+		"doors_num": "Broj vrata",
+		"seats_num": "Broj sjedala",
+		"year": "Godina",
+		"price_eurocent": "Cijena",
+		"power_kw": "Snaga motora",
+		"km": "Kilometraža",
+		"registered_until": "Registriran do",
+		"is_first_owner": "Prvi vlasnik",
+		"is_service_book_available": "Sevisna knjižica",
+		"is_vehicle_garaged": "Garažiran",
+		"engine_displacement_cm3": "Kubikaža",
+		"battery_capacity_kwh": "Kapacitet baterije",
+		"WithImage": "Samo oglasi sa slikama",
+		"results": "rezultati",
+		"from": "od",
+		"to": "do"
+	},
+	"agent-support": {
+		"h2": "Traži pomoć agenta",
+		"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+		"cta": "Pregledaj",
+		"modal": {
+			"call": "Nazovi",
+			"write": "Piši Nam"
+		}
+	},
+	"ad": {
+		"more": "Više"
+	},
+	"footer": {}
+}

@@ -1,0 +1,12 @@
+export { AdAutoAggregateArgs } from './ad-auto-aggregate.args';
+export { AdAutoGroupByArgs } from './ad-auto-group-by.args';
+export { CreateManyAdAutoArgs } from './create-many-ad-auto.args';
+export { CreateOneAdAutoArgs } from './create-one-ad-auto.args';
+export { DeleteManyAdAutoArgs } from './delete-many-ad-auto.args';
+export { DeleteOneAdAutoArgs } from './delete-one-ad-auto.args';
+export { FindFirstAdAutoArgs } from './find-first-ad-auto.args';
+export { FindManyAdAutoArgs } from './find-many-ad-auto.args';
+export { FindUniqueAdAutoArgs } from './find-unique-ad-auto.args';
+export { UpdateManyAdAutoArgs } from './update-many-ad-auto.args';
+export { UpdateOneAdAutoArgs } from './update-one-ad-auto.args';
+export { UpsertOneAdAutoArgs } from './upsert-one-ad-auto.args';

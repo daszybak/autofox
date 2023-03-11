@@ -1,0 +1,19 @@
+{
+	"hero": {
+		"title": "Naslov",
+		"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+	},
+	"new-deals": "Nove ponude",
+	"top-deals": "Top ponude",
+	"top-sellers": "Top prodavači",
+	"trending": "U trendu",
+	"blog-posts": {
+		"title": "Zadnje iz svijeta automobila",
+		"button": "Vidi sve"
+	},
+	"price-estimate": {
+		"title": "Koliko vrijedi vaše vozilo?",
+		"text": "Besplatna i brza procjena vrijednosti vašeg vozila",
+		"button": "Započni procjenu"
+	}
+}

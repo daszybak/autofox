@@ -1,0 +1,308 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl"]
+}
+
+generator nestgraphql {
+  provider          = "node node_modules/prisma-nestjs-graphql"
+  // for yarn monorepos
+  // provider = "prisma-nestjs-graphql"
+  output            = "../src/@generated"
+  outputFilePattern = "{model}/{plural.type}/{name}.{type}.ts"
+  reExport          = Directories
+
+  fields_Validator_from  = "class-validator"
+  fields_Validator_input = true
+}
+
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  user_sub String  @id @unique
+  name     String?
+  ads      Ad[]
+  files    File[]
+  lists    List[]
+  blogs    Blog[]
+
+  /// 0 - Not-moderated, 1 - Blocked, 11 - Auto-moderated success, 12 - Auto-moderated error, 21 - Manually-moderated success, 22 - Manually-moderated error
+  /// @HideField({ output: false, input: true })
+  /// @Validator.IsIn([0, 1, 11, 12, 21, 22])
+  moderation_flag  Int                @default(0)
+  UserPromotion    UserPromotion[]
+  AdPromotion      AdPromotion[]
+  MessagingChannel MessagingChannel[]
+}
+
+model Category {
+  category_id            Int          @id @default(autoincrement())
+  created_at             DateTime     @default(now())
+  updated_at             DateTime     @updatedAt
+  deleted_at             DateTime?
+  name                   String
+  children               Category[]   @relation("CategoryToCategory")
+  parent_category_id     Int?
+  parent                 Category?    @relation(fields: [parent_category_id], references: [category_id], name: "CategoryToCategory", onDelete: NoAction, onUpdate: NoAction)
+  icon                   String?
+  code                   String
+  weight                 Int?
+  ad_categories          AdCategory[]
+  AdAutoConditionType    AdAuto[]     @relation("AdAutoConditionType")
+  AdAutoVehicleType      AdAuto[]     @relation("AdAutoVehicleType")
+  AdAutoFuelType         AdAuto[]     @relation("AdAutoFuelType")
+  AdAutoTransmissionType AdAuto[]     @relation("AdAutoTransmissionType")
+  AdAutoMake             AdAuto[]     @relation("AdAutoMake")
+  AdAutoModel            AdAuto[]     @relation("AdAutoModel")
+  AdAutoBodyType         AdAuto[]     @relation("AdAutoBodyType")
+  AdAutoVariant          AdAuto[]     @relation("AdAutoVariant")
+  AdAutoEmissionClass    AdAuto[]     @relation("AdAutoEmissionClass")
+  AdAutoConditioning     AdAuto[]     @relation("AdAutoConditioning")
+  AdAutoColorInterior    AdAuto[]     @relation("AdAutoColorInterior")
+  AdAutoColorExterior    AdAuto[]     @relation("AdAutoColorExterior")
+
+  Language Blog[] @relation("Language")
+
+  PromotionRegion PromotionPlan[] @relation("PromotionRegion")
+}
+
+model Ad {
+  ad_id            Int          @id @default(autoincrement())
+  created_at       DateTime     @default(now())
+  updated_at       DateTime     @updatedAt
+  deleted_at       DateTime?
+  title            String
+  text             String
+  coords_latitude  Float?
+  coords_longitude Float?
+  coords_radius    Int?
+  address          String?
+  price_eurocent   Int?
+  user_sub         String
+  user             User?        @relation(fields: [user_sub], references: [user_sub])
+  ad_categories    AdCategory[]
+  ad_auto          AdAuto?      @relation(name: "AdAuto")
+  ad_house         AdHouse?     @relation(name: "AdHouse")
+  files            File[]
+  ListAd           ListAd[]
+
+  is_sold Boolean @default(false)
+
+  /// 0 - Not-moderated, 1 - Blocked, 11 - Auto-moderated success, 12 - Auto-moderated error, 21 - Manually-moderated success, 22 - Manually-moderated error
+  /// @HideField({ output: false, input: true })
+  /// @Validator.IsIn([0, 1, 11, 12, 21, 22])
+  moderation_flag Int @default(0)
+
+  /// @Validator.Min(0.0) @Validator.Max(5.0)
+  price_rating Decimal?      @db.Decimal(2, 1)
+  AdPromotion  AdPromotion[]
+}
+
+model AdCategory {
+  ad_id       Int
+  ad          Ad       @relation(fields: [ad_id], references: [ad_id])
+  category_id Int
+  category    Category @relation(fields: [category_id], references: [category_id])
+
+  @@id([ad_id, category_id])
+}
+
+model AdAuto {
+  ad_auto_id Int @id @default(autoincrement())
+  ad_id      Int @unique
+  ad         Ad  @relation(fields: [ad_id], references: [ad_id], name: "AdAuto")
+
+  condition_type_cid    Int?
+  condition_type        Category? @relation(fields: [condition_type_cid], references: [category_id], name: "AdAutoConditionType", onDelete: NoAction, onUpdate: NoAction)
+  vehicle_type_cid      Int?
+  vehicle_type          Category? @relation(fields: [vehicle_type_cid], references: [category_id], name: "AdAutoVehicleType", onDelete: NoAction, onUpdate: NoAction)
+  fuel_type_cid         Int?
+  fuel_type             Category? @relation(fields: [fuel_type_cid], references: [category_id], name: "AdAutoFuelType", onDelete: NoAction, onUpdate: NoAction)
+  transmission_type_cid Int?
+  transmission_type     Category? @relation(fields: [transmission_type_cid], references: [category_id], name: "AdAutoTransmissionType", onDelete: NoAction, onUpdate: NoAction)
+  make_cid              Int?
+  make                  Category? @relation(fields: [make_cid], references: [category_id], name: "AdAutoMake", onDelete: NoAction, onUpdate: NoAction)
+  model_cid             Int?
+  model                 Category? @relation(fields: [model_cid], references: [category_id], name: "AdAutoModel", onDelete: NoAction, onUpdate: NoAction)
+  year                  Int
+  km                    Int?
+  power_kw              Int?
+
+  body_type_cid Int?
+  body_type     Category? @relation(fields: [body_type_cid], references: [category_id], name: "AdAutoBodyType", onDelete: NoAction, onUpdate: NoAction)
+  variant_cid   Int?
+  variant       Category? @relation(fields: [variant_cid], references: [category_id], name: "AdAutoVariant", onDelete: NoAction, onUpdate: NoAction)
+
+  registered_until          DateTime?
+  doors_num                 Int?
+  seats_num                 Int?
+  is_first_owner            Boolean?
+  is_service_book_available Boolean?
+  is_vehicle_garaged        Boolean?
+  engine_displacement_cm3   Int?
+  emission_class_cid        Int?
+  emission_class            Category? @relation(fields: [emission_class_cid], references: [category_id], name: "AdAutoEmissionClass", onDelete: NoAction, onUpdate: NoAction)
+  battery_capacity_kwh      Int?
+  conditioning_cid          Int?
+  conditioning              Category? @relation(fields: [conditioning_cid], references: [category_id], name: "AdAutoConditioning", onDelete: NoAction, onUpdate: NoAction)
+  color_exterior_cid        Int?
+  color_exterior            Category? @relation(fields: [color_exterior_cid], references: [category_id], name: "AdAutoColorExterior", onDelete: NoAction, onUpdate: NoAction)
+  color_interior_cid        Int?
+  color_interior            Category? @relation(fields: [color_interior_cid], references: [category_id], name: "AdAutoColorInterior", onDelete: NoAction, onUpdate: NoAction)
+}
+
+model AdHouse {
+  ad_house_id Int @id @default(autoincrement())
+  ad_id       Int @unique
+  ad          Ad  @relation(fields: [ad_id], references: [ad_id], name: "AdHouse")
+
+  meters Int?
+}
+
+model File {
+  file_id  Int    @id @default(autoincrement())
+  filename String
+  filesize Int
+  code     String
+  path     String
+  ad_id    Int
+  ad       Ad     @relation(fields: [ad_id], references: [ad_id])
+
+  /// @HideField({ output: false, input: true })
+  user_sub String
+  user     User?  @relation(fields: [user_sub], references: [user_sub], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model List {
+  list_id   Int    @id @default(autoincrement())
+  /// 0 - Favorites, 1 - Saved Search
+  /// @Validator.IsIn([0, 1])
+  list_type Int    @default(0)
+  title     String
+
+  /// @FieldType({ name: 'Scalars.GraphQLJSON', from: 'graphql-scalars', input: true })
+  search_params          String
+  is_notifiable_by_email Boolean @default(false)
+  is_notifiable_by_push  Boolean @default(false)
+  is_notifiable_by_sms   Boolean @default(false)
+
+  /// @HideField({ output: false, input: true })
+  user_sub String
+  user     User     @relation(fields: [user_sub], references: [user_sub], onDelete: NoAction, onUpdate: NoAction)
+  ListAd   ListAd[]
+}
+
+model ListAd {
+  ad_id   Int
+  ad      Ad   @relation(fields: [ad_id], references: [ad_id], onDelete: Cascade, onUpdate: Cascade)
+  list_id Int
+  list    List @relation(fields: [list_id], references: [list_id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@id([ad_id, list_id])
+}
+
+model Blog {
+  blog_id      Int       @id @default(autoincrement())
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @updatedAt
+  deleted_at   DateTime?
+  title        String
+  slug         String
+  text         String
+  language_cid Int?
+  language     Category? @relation(fields: [language_cid], references: [category_id], name: "Language", onDelete: NoAction, onUpdate: NoAction)
+
+  /// @HideField({ output: false, input: true })
+  user_sub String
+  user     User   @relation(fields: [user_sub], references: [user_sub], onDelete: NoAction, onUpdate: NoAction)
+
+  /// 0 - Not-moderated, 1 - Blocked, 11 - Auto-moderated success, 12 - Auto-moderated error, 21 - Manually-moderated success, 22 - Manually-moderated error
+  /// @HideField({ output: false, input: true })
+  /// @Validator.IsIn([0, 1, 11, 12, 21, 22])
+  moderation_flag Int @default(0)
+}
+
+model PromotionPlan {
+  promotion_plan_id    Int       @id @default(autoincrement())
+  created_at           DateTime  @default(now())
+  updated_at           DateTime  @updatedAt
+  deleted_at           DateTime?
+  title                String
+  text                 String
+  price                Decimal
+  /// In seconds
+  validity_period      Int
+  promotion_region_cid Int?
+  promotion_region     Category? @relation(fields: [promotion_region_cid], references: [category_id], name: "PromotionRegion", onDelete: NoAction, onUpdate: NoAction)
+  /// 0 - Ad, 1 - User
+  /// @Validator.IsIn([0, 1])
+  promotion_plan_type  Int       @default(0)
+
+  ParentPromotionPlan PromotionPlanRelation[] @relation("ParentPromotionPlan")
+  ChildPromotionPlan  PromotionPlanRelation[] @relation("ChildPromotionPlan")
+
+  AdPromotion   AdPromotion[]
+  UserPromotion UserPromotion[]
+}
+
+model PromotionPlanRelation {
+  parent_promotion_plan_id Int
+  parent_promotion_plan    PromotionPlan @relation(fields: [parent_promotion_plan_id], references: [promotion_plan_id], name: "ParentPromotionPlan", onDelete: NoAction, onUpdate: NoAction)
+  child_promotion_plan_id  Int
+  child_promotion_plan     PromotionPlan @relation(fields: [child_promotion_plan_id], references: [promotion_plan_id], name: "ChildPromotionPlan", onDelete: NoAction, onUpdate: NoAction)
+  count                    Int           @default(1)
+  /// 0 - Daily, 1 - Weekly, 2 - Monthly, 3 - Yearly, 4 - One-time
+  /// @Validator.IsIn([0, 1, 2, 3, 4])
+  reccurence               Int           @default(2)
+
+  @@id([parent_promotion_plan_id, child_promotion_plan_id])
+}
+
+model AdPromotion {
+  promotion_plan_id Int
+  promotion_plan    PromotionPlan @relation(fields: [promotion_plan_id], references: [promotion_plan_id], onDelete: NoAction, onUpdate: NoAction)
+  ad_id             Int
+  ad                Ad            @relation(fields: [ad_id], references: [ad_id], onDelete: NoAction, onUpdate: NoAction)
+  user_sub          String
+  user              User          @relation(fields: [user_sub], references: [user_sub], onDelete: NoAction, onUpdate: NoAction)
+  valid_from        DateTime?
+  valid_to          DateTime?
+  transaction_id    String?
+
+  @@id([promotion_plan_id, ad_id, user_sub])
+}
+
+model UserPromotion {
+  promotion_plan_id Int
+  promotion_plan    PromotionPlan @relation(fields: [promotion_plan_id], references: [promotion_plan_id], onDelete: NoAction, onUpdate: NoAction)
+  user_sub          String
+  user              User          @relation(fields: [user_sub], references: [user_sub], onDelete: NoAction, onUpdate: NoAction)
+  valid_from        DateTime?
+  valid_to          DateTime?
+  transaction_id    String?
+
+  @@id([promotion_plan_id, user_sub])
+}
+
+model MessagingChannel {
+  messaging_channel_id Int       @id @default(autoincrement())
+  created_at           DateTime  @default(now())
+  updated_at           DateTime  @updatedAt
+  deleted_at           DateTime?
+  address              String
+  /// 0 - iOS, 1 - Android, 2 - Web, 3 - Email, 4 - SMS
+  /// @Validator.IsIn([0, 1, 2, 3, 4])
+  device_type          Int
+  platform             String
+  user_sub             String
+  user                 User      @relation(fields: [user_sub], references: [user_sub], onDelete: NoAction, onUpdate: NoAction)
+}

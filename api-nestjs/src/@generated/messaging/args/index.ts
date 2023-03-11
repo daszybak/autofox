@@ -1,0 +1,12 @@
+export { CreateManyMessagingArgs } from './create-many-messaging.args';
+export { CreateOneMessagingArgs } from './create-one-messaging.args';
+export { DeleteManyMessagingArgs } from './delete-many-messaging.args';
+export { DeleteOneMessagingArgs } from './delete-one-messaging.args';
+export { FindFirstMessagingArgs } from './find-first-messaging.args';
+export { FindManyMessagingArgs } from './find-many-messaging.args';
+export { FindUniqueMessagingArgs } from './find-unique-messaging.args';
+export { MessagingAggregateArgs } from './messaging-aggregate.args';
+export { MessagingGroupByArgs } from './messaging-group-by.args';
+export { UpdateManyMessagingArgs } from './update-many-messaging.args';
+export { UpdateOneMessagingArgs } from './update-one-messaging.args';
+export { UpsertOneMessagingArgs } from './upsert-one-messaging.args';

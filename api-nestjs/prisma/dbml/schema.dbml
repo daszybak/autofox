@@ -1,0 +1,331 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table User {
+  user_sub String [pk, unique]
+  name String
+  ads Ad [not null]
+  files File [not null]
+  lists List [not null]
+  blogs Blog [not null]
+  moderation_flag Int [not null, default: 0, note: '0 - Not-moderated, 1 - Blocked, 11 - Auto-moderated success, 12 - Auto-moderated error, 21 - Manually-moderated success, 22 - Manually-moderated error
+@HideField({ output: false, input: true })
+@Validator.IsIn([0, 1, 11, 12, 21, 22])']
+  UserPromotion UserPromotion [not null]
+  AdPromotion AdPromotion [not null]
+  MessagingChannel MessagingChannel [not null]
+}
+
+Table Category {
+  category_id Int [pk, increment]
+  created_at DateTime [default: `now()`, not null]
+  updated_at DateTime [not null]
+  deleted_at DateTime
+  name String [not null]
+  children Category [not null]
+  parent_category_id Int
+  parent Category
+  icon String
+  code String [not null]
+  weight Int
+  ad_categories AdCategory [not null]
+  AdAutoConditionType AdAuto [not null]
+  AdAutoVehicleType AdAuto [not null]
+  AdAutoFuelType AdAuto [not null]
+  AdAutoTransmissionType AdAuto [not null]
+  AdAutoMake AdAuto [not null]
+  AdAutoModel AdAuto [not null]
+  AdAutoBodyType AdAuto [not null]
+  AdAutoVariant AdAuto [not null]
+  AdAutoEmissionClass AdAuto [not null]
+  AdAutoConditioning AdAuto [not null]
+  AdAutoColorInterior AdAuto [not null]
+  AdAutoColorExterior AdAuto [not null]
+  Language Blog [not null]
+  PromotionRegion PromotionPlan [not null]
+}
+
+Table Ad {
+  ad_id Int [pk, increment]
+  created_at DateTime [default: `now()`, not null]
+  updated_at DateTime [not null]
+  deleted_at DateTime
+  title String [not null]
+  text String [not null]
+  coords_latitude Float
+  coords_longitude Float
+  coords_radius Int
+  address String
+  price_eurocent Int
+  user_sub String [not null]
+  user User
+  ad_categories AdCategory [not null]
+  ad_auto AdAuto
+  ad_house AdHouse
+  files File [not null]
+  ListAd ListAd [not null]
+  is_sold Boolean [not null, default: false]
+  moderation_flag Int [not null, default: 0, note: '0 - Not-moderated, 1 - Blocked, 11 - Auto-moderated success, 12 - Auto-moderated error, 21 - Manually-moderated success, 22 - Manually-moderated error
+@HideField({ output: false, input: true })
+@Validator.IsIn([0, 1, 11, 12, 21, 22])']
+  price_rating Decimal [note: '@Validator.Min(0.0) @Validator.Max(5.0)']
+  AdPromotion AdPromotion [not null]
+}
+
+Table AdCategory {
+  ad_id Int [not null]
+  ad Ad [not null]
+  category_id Int [not null]
+  category Category [not null]
+
+  indexes {
+    (ad_id, category_id) [pk]
+  }
+}
+
+Table AdAuto {
+  ad_auto_id Int [pk, increment]
+  ad_id Int [unique, not null]
+  ad Ad [not null]
+  condition_type_cid Int
+  condition_type Category
+  vehicle_type_cid Int
+  vehicle_type Category
+  fuel_type_cid Int
+  fuel_type Category
+  transmission_type_cid Int
+  transmission_type Category
+  make_cid Int
+  make Category
+  model_cid Int
+  model Category
+  year Int [not null]
+  km Int
+  power_kw Int
+  body_type_cid Int
+  body_type Category
+  variant_cid Int
+  variant Category
+  registered_until DateTime
+  doors_num Int
+  seats_num Int
+  is_first_owner Boolean
+  is_service_book_available Boolean
+  is_vehicle_garaged Boolean
+  engine_displacement_cm3 Int
+  emission_class_cid Int
+  emission_class Category
+  battery_capacity_kwh Int
+  conditioning_cid Int
+  conditioning Category
+  color_exterior_cid Int
+  color_exterior Category
+  color_interior_cid Int
+  color_interior Category
+}
+
+Table AdHouse {
+  ad_house_id Int [pk, increment]
+  ad_id Int [unique, not null]
+  ad Ad [not null]
+  meters Int
+}
+
+Table File {
+  file_id Int [pk, increment]
+  filename String [not null]
+  filesize Int [not null]
+  code String [not null]
+  path String [not null]
+  ad_id Int [not null]
+  ad Ad [not null]
+  user_sub String [not null, note: '@HideField({ output: false, input: true })']
+  user User
+}
+
+Table List {
+  list_id Int [pk, increment]
+  list_type Int [not null, default: 0, note: '0 - Favorites, 1 - Saved Search
+@Validator.IsIn([0, 1])']
+  title String [not null]
+  search_params String [not null, note: '@FieldType({ name: \'Scalars.GraphQLJSON\', from: \'graphql-scalars\', input: true })']
+  is_notifiable_by_email Boolean [not null, default: false]
+  is_notifiable_by_push Boolean [not null, default: false]
+  is_notifiable_by_sms Boolean [not null, default: false]
+  user_sub String [not null, note: '@HideField({ output: false, input: true })']
+  user User [not null]
+  ListAd ListAd [not null]
+}
+
+Table ListAd {
+  ad_id Int [not null]
+  ad Ad [not null]
+  list_id Int [not null]
+  list List [not null]
+
+  indexes {
+    (ad_id, list_id) [pk]
+  }
+}
+
+Table Blog {
+  blog_id Int [pk, increment]
+  created_at DateTime [default: `now()`, not null]
+  updated_at DateTime [not null]
+  deleted_at DateTime
+  title String [not null]
+  slug String [not null]
+  text String [not null]
+  language_cid Int
+  language Category
+  user_sub String [not null, note: '@HideField({ output: false, input: true })']
+  user User [not null]
+  moderation_flag Int [not null, default: 0, note: '0 - Not-moderated, 1 - Blocked, 11 - Auto-moderated success, 12 - Auto-moderated error, 21 - Manually-moderated success, 22 - Manually-moderated error
+@HideField({ output: false, input: true })
+@Validator.IsIn([0, 1, 11, 12, 21, 22])']
+}
+
+Table PromotionPlan {
+  promotion_plan_id Int [pk, increment]
+  created_at DateTime [default: `now()`, not null]
+  updated_at DateTime [not null]
+  deleted_at DateTime
+  title String [not null]
+  text String [not null]
+  price Decimal [not null]
+  validity_period Int [not null, note: 'In seconds']
+  promotion_region_cid Int
+  promotion_region Category
+  promotion_plan_type Int [not null, default: 0, note: '0 - Ad, 1 - User
+@Validator.IsIn([0, 1])']
+  ParentPromotionPlan PromotionPlanRelation [not null]
+  ChildPromotionPlan PromotionPlanRelation [not null]
+  AdPromotion AdPromotion [not null]
+  UserPromotion UserPromotion [not null]
+}
+
+Table PromotionPlanRelation {
+  parent_promotion_plan_id Int [not null]
+  parent_promotion_plan PromotionPlan [not null]
+  child_promotion_plan_id Int [not null]
+  child_promotion_plan PromotionPlan [not null]
+  count Int [not null, default: 1]
+  reccurence Int [not null, default: 2, note: '0 - Daily, 1 - Weekly, 2 - Monthly, 3 - Yearly, 4 - One-time
+@Validator.IsIn([0, 1, 2, 3, 4])']
+
+  indexes {
+    (parent_promotion_plan_id, child_promotion_plan_id) [pk]
+  }
+}
+
+Table AdPromotion {
+  promotion_plan_id Int [not null]
+  promotion_plan PromotionPlan [not null]
+  ad_id Int [not null]
+  ad Ad [not null]
+  user_sub String [not null]
+  user User [not null]
+  valid_from DateTime
+  valid_to DateTime
+  transaction_id String
+
+  indexes {
+    (promotion_plan_id, ad_id, user_sub) [pk]
+  }
+}
+
+Table UserPromotion {
+  promotion_plan_id Int [not null]
+  promotion_plan PromotionPlan [not null]
+  user_sub String [not null]
+  user User [not null]
+  valid_from DateTime
+  valid_to DateTime
+  transaction_id String
+
+  indexes {
+    (promotion_plan_id, user_sub) [pk]
+  }
+}
+
+Table MessagingChannel {
+  messaging_channel_id Int [pk, increment]
+  created_at DateTime [default: `now()`, not null]
+  updated_at DateTime [not null]
+  deleted_at DateTime
+  address String [not null]
+  device_type Int [not null, note: '0 - iOS, 1 - Android, 2 - Web, 3 - Email, 4 - SMS
+@Validator.IsIn([0, 1, 2, 3, 4])']
+  platform String [not null]
+  user_sub String [not null]
+  user User [not null]
+}
+
+Ref: Category.parent_category_id > Category.category_id
+
+Ref: Ad.user_sub > User.user_sub
+
+Ref: AdCategory.ad_id > Ad.ad_id
+
+Ref: AdCategory.category_id > Category.category_id
+
+Ref: AdAuto.ad_id - Ad.ad_id
+
+Ref: AdAuto.condition_type_cid > Category.category_id [delete: No Action]
+
+Ref: AdAuto.vehicle_type_cid > Category.category_id [delete: No Action]
+
+Ref: AdAuto.fuel_type_cid > Category.category_id [delete: No Action]
+
+Ref: AdAuto.transmission_type_cid > Category.category_id [delete: No Action]
+
+Ref: AdAuto.make_cid > Category.category_id [delete: No Action]
+
+Ref: AdAuto.model_cid > Category.category_id [delete: No Action]
+
+Ref: AdAuto.body_type_cid > Category.category_id [delete: No Action]
+
+Ref: AdAuto.variant_cid > Category.category_id [delete: No Action]
+
+Ref: AdAuto.emission_class_cid > Category.category_id [delete: No Action]
+
+Ref: AdAuto.conditioning_cid > Category.category_id [delete: No Action]
+
+Ref: AdAuto.color_exterior_cid > Category.category_id [delete: No Action]
+
+Ref: AdAuto.color_interior_cid > Category.category_id [delete: No Action]
+
+Ref: AdHouse.ad_id - Ad.ad_id
+
+Ref: File.ad_id > Ad.ad_id
+
+Ref: File.user_sub > User.user_sub [delete: No Action]
+
+Ref: List.user_sub > User.user_sub [delete: No Action]
+
+Ref: ListAd.ad_id > Ad.ad_id [delete: Cascade]
+
+Ref: ListAd.list_id > List.list_id [delete: Cascade]
+
+Ref: Blog.language_cid > Category.category_id [delete: No Action]
+
+Ref: Blog.user_sub > User.user_sub [delete: No Action]
+
+Ref: PromotionPlan.promotion_region_cid > Category.category_id [delete: No Action]
+
+Ref: PromotionPlanRelation.parent_promotion_plan_id > PromotionPlan.promotion_plan_id [delete: No Action]
+
+Ref: PromotionPlanRelation.child_promotion_plan_id > PromotionPlan.promotion_plan_id [delete: No Action]
+
+Ref: AdPromotion.promotion_plan_id > PromotionPlan.promotion_plan_id [delete: No Action]
+
+Ref: AdPromotion.ad_id > Ad.ad_id [delete: No Action]
+
+Ref: AdPromotion.user_sub > User.user_sub [delete: No Action]
+
+Ref: UserPromotion.promotion_plan_id > PromotionPlan.promotion_plan_id [delete: No Action]
+
+Ref: UserPromotion.user_sub > User.user_sub [delete: No Action]
+
+Ref: MessagingChannel.user_sub > User.user_sub [delete: No Action]

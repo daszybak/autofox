@@ -1,0 +1,59 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "docker-compose",
+			"type": "shell",
+			"command": "docker-compose -p autofox up -d --build",
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			}
+		},
+		{
+			"label": "Native-prisma_generate",
+			"type": "shell",
+			"command": "npx prisma generate"
+		},
+		{
+			"label": "Native-prisma_migrate",
+			"type": "shell",
+			"command": "npx prisma migrate dev"
+		},
+		{
+			"label": "Native-prisma_migrate_reset",
+			"type": "shell",
+			"command": "npx prisma migrate reset"
+		},
+		{
+			"label": "Native-create_new_resource",
+			"type": "shell",
+			"command": "npx nest g resource"
+		},
+		{
+			"label": "Docker-prisma_generate",
+			"type": "shell",
+			"command": "docker exec -it api.autofox.local npx prisma generate"
+		},
+		{
+			"label": "Docker-prisma_migrate",
+			"type": "shell",
+			"command": "docker exec -it api.autofox.local npx prisma migrate dev"
+		},
+		{
+			"label": "Docker-prisma_migrate_reset",
+			"type": "shell",
+			"command": "docker exec -it api.autofox.local npx prisma migrate reset"
+		},
+		{
+			"label": "Docker-create_new_resource",
+			"type": "shell",
+			"command": "docker exec -it api.autofox.local npx nest g resource"
+		},
+		{
+			"label": "Docker-mssql_create_database",
+			"type": "shell",
+			"command": "docker exec -it mssql.autofox.local /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'saPassword1%' -Q 'CREATE DATABASE apinest'"
+		}
+	]
+}

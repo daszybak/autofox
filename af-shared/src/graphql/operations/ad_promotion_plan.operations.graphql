@@ -1,0 +1,11 @@
+fragment adPromotionFields on AdPromotion {
+	valid_from
+	valid_to
+	transaction_id
+}
+
+mutation CreateAdPromotion($data: AdPromotionCreateInput!) {
+	createAdPromotion(data: $data) {
+		...adPromotionFields
+	}
+}

@@ -1,0 +1,14 @@
+export { CategoryAggregateArgs } from './category-aggregate.args';
+export { CategoryGroupByArgs } from './category-group-by.args';
+export { CreateManyCategoryArgs } from './create-many-category.args';
+export { CreateOneCategoryArgs } from './create-one-category.args';
+export { DeleteManyCategoryArgs } from './delete-many-category.args';
+export { DeleteOneCategoryArgs } from './delete-one-category.args';
+export { FindFirstCategoryArgs } from './find-first-category.args';
+export { FindManyAdCategoryArgs } from './find-many-ad-category.args';
+export { FindManyCategoryArgs } from './find-many-category.args';
+export { FindUniqueCategoryArgs } from './find-unique-category.args';
+export { GroupByAdCategoryArgs } from './group-by-ad-category.args';
+export { UpdateManyCategoryArgs } from './update-many-category.args';
+export { UpdateOneCategoryArgs } from './update-one-category.args';
+export { UpsertOneCategoryArgs } from './upsert-one-category.args';

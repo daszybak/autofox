@@ -1,0 +1,59 @@
+fragment categoryFields on Category {
+	code
+	name
+	category_id
+	icon
+	parent_category_id
+	weight
+	created_at
+	updated_at
+}
+
+query findAllCategories(
+	$where: CategoryWhereInput
+	$orderBy: [CategoryOrderByWithRelationInput!]
+	$cursor: CategoryWhereUniqueInput
+	$take: Int
+	$skip: Int
+	$distinct: [CategoryScalarFieldEnum!]
+) {
+	findAllCategories(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take, skip: $skip, distinct: $distinct) {
+		...categoryFields
+	}
+}
+
+query findAllCategoriesOrderByWeight($sortOrder: SortOrder!, $cat_code: String) {
+	findAllCategories(orderBy: [{ weight: $sortOrder }, { updated_at: desc }], where: { code: { equals: $cat_code } }) {
+		...categoryFields
+	}
+}
+
+query findAllCategoriesWhereCodeEquals($code: String!) {
+	findAllCategories(where: { code: { equals: $code } }) {
+		...categoryFields
+	}
+}
+
+mutation createCategory($data: CategoryCreateInput!) {
+	createCategory(data: $data) {
+		...categoryFields
+	}
+}
+
+mutation removeCategory($id: Int!) {
+	removeCategory(where: { category_id: $id }) {
+		...categoryFields
+	}
+}
+
+mutation updateCategory($id: Int!, $data: CategoryUpdateInput!) {
+	updateCategory(where: { category_id: $id }, data: $data) {
+		...categoryFields
+	}
+}
+
+mutation updateManyCategories($data: [UpdateManyCategoriesInput!]!) {
+	updateManyCategories(items: $data) {
+		...categoryFields
+	}
+}

@@ -1,0 +1,23 @@
+schema: 'http://api.autofox.iddqd.hr/graphql'
+documents:
+  - 'src/graphql/operations/ad.operations.graphql'
+  - 'src/graphql/operations/user.operations.graphql'
+  - 'src/graphql/operations/category.operations.graphql'
+  - 'src/graphql/operations/combined.operations.graphql'
+  - 'src/graphql/operations/file.operations.graphql'
+  - 'src/graphql/operations/list.operations.graphql'
+  - 'src/graphql/operations/blog.operations.graphql'
+  - 'src/graphql/operations/promotion_plans.operations.graphql'
+  - 'src/graphql/operations/ad_promotion_plan.operations.graphql'
+generates:
+  ./src/graphql/generated/generated.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+      - typescript-apollo-client-helpers
+    hooks:
+      afterOneFileWrite:
+        - prettier --write
+watch: true
+overwrite: true

@@ -1,0 +1,61 @@
+{
+	"name": "af-shared",
+	"version": "0.0.1",
+	"description": "Shared af repository",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"/dist"
+	],
+	"private": true,
+	"scripts": {
+		"build": "rm -rf lib/ && prettier --write src/ && tsc",
+		"generate": "graphql-codegen --require dotenv/config"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@ssh.dev.azure.com:v3/iddqd-hr/Autofox/af-shared"
+	},
+	"author": "",
+	"license": "UNLICENSED",
+	"devDependencies": {
+		"@apollo/client": "^3.6.9",
+		"@babel/core": "^7.18.9",
+		"@emotion/react": "^11.10.0",
+		"@emotion/server": "^11.10.0",
+		"@graphql-codegen/cli": "^2.9.1",
+		"@graphql-codegen/typescript": "^2.7.2",
+		"@graphql-codegen/typescript-apollo-client-helpers": "^2.2.3",
+		"@graphql-codegen/typescript-operations": "^2.5.2",
+		"@graphql-codegen/typescript-react-apollo": "^3.3.2",
+		"@mantine/core": "^5.7.2",
+		"@mantine/hooks": "^5.7.2",
+		"@mantine/next": "^5.7.2",
+		"@reduxjs/toolkit": "^1.8.3",
+		"@types/lodash": "^4.14.182",
+		"@types/node": "^18.0.4",
+		"@types/qs": "^6.9.7",
+		"@types/react": "^18.0.15",
+		"@types/react-dom": "^18.0.6",
+		"@types/react-redux": "^7.1.24",
+		"deepmerge": "^4.2.2",
+		"graphql": "^16.5.0",
+		"graphql-tag": "^2.0.0",
+		"lodash": "^4.17.21",
+		"next": "12.2.2",
+		"oidc-client-ts": "^2.0.5",
+		"prettier": "^2.7.1",
+		"qs": "^6.11.0",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"react-icons": "^4.4.0",
+		"react-redux": "^8.0.2",
+		"typescript": "^4.7.4",
+		"react-oidc-context": "2.1.1"
+	},
+	"peerDependencies": {
+		"next": "12.2.2",
+		"react": "18.2.0",
+		"react-dom": "18.2.0"
+	}
+}

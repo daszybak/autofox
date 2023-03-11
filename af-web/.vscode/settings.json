@@ -1,0 +1,23 @@
+{
+	"git.ignoreLimitWarning": true,
+	"[typescript]": {
+		"editor.formatOnPaste": true,
+		"editor.formatOnSave": true,
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescriptreact]": { "editor.formatOnPaste": true, "editor.formatOnSave": true, "editor.defaultFormatter": "esbenp.prettier-vscode" },
+	"[html]": {
+		"editor.formatOnPaste": false,
+		"editor.formatOnSave": false,
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"editor.formatOnPaste": true,
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.rulers": [180, 240],
+	"npm.packageManager": "yarn",
+	"prettier.printWidth": 180,
+	"prettier.useTabs": true,
+	"prettier.singleQuote": true,
+	"i18next.i18nPaths": "c:/Users/kdjel/Desktop/work/af-web/public/locales"
+}

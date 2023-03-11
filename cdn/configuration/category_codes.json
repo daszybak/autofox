@@ -1,0 +1,16 @@
+[
+	{ "code": "AdAutoConditionType" },
+	{ "code": "AdAutoVehicleType" },
+	{ "code": "AdAutoMake" },
+	{ "code": "AdAutoModel" },
+	{ "code": "AdAutoVariant" },
+	{ "code": "AdAutoFuelType" },
+	{ "code": "AdAutoTransmissionType" },
+	{ "code": "AdAutoBodyType" },
+	{ "code": "AdAutoEmissionClass" },
+	{ "code": "AdAutoConditioning" },
+	{ "code": "AdAutoColorInterior" },
+	{ "code": "AdAutoColorExterior" },
+	{ "code": "VehicleAttributes" },
+	{ "code": "Language" }
+]

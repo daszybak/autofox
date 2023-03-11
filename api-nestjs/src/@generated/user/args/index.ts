@@ -1,0 +1,12 @@
+export { CreateManyUserArgs } from './create-many-user.args';
+export { CreateOneUserArgs } from './create-one-user.args';
+export { DeleteManyUserArgs } from './delete-many-user.args';
+export { DeleteOneUserArgs } from './delete-one-user.args';
+export { FindFirstUserArgs } from './find-first-user.args';
+export { FindManyUserArgs } from './find-many-user.args';
+export { FindUniqueUserArgs } from './find-unique-user.args';
+export { UpdateManyUserArgs } from './update-many-user.args';
+export { UpdateOneUserArgs } from './update-one-user.args';
+export { UpsertOneUserArgs } from './upsert-one-user.args';
+export { UserAggregateArgs } from './user-aggregate.args';
+export { UserGroupByArgs } from './user-group-by.args';

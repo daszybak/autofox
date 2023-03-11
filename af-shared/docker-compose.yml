@@ -1,0 +1,30 @@
+version: '3'
+services:
+  af-shared.autofox.local:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./lib:/app/lib
+      - ./src:/app/src
+      - ./yarn.lock:/app/yarn.lock
+      - ./package.json:/app/package.json
+      - ./codegen.yml:/app/codegen.yml
+    networks:
+      - autofox
+    environment:
+      - NODE_ENV=dev
+    command: npx tsc -w
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 8G
+        reservations:
+          cpus: '2'
+          memory: 2G
+
+networks:
+  autofox:
+    name: autofox
+    driver: bridge

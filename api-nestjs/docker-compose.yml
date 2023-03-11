@@ -1,0 +1,54 @@
+version: '3'
+services:
+  api.autofox.local:
+    container_name: api.autofox.local
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    volumes:
+      - ./data:/usr/src/app/data
+      - ./prisma:/usr/src/app/prisma
+      - ./src:/usr/src/app/src
+    env_file:
+      - .env
+    expose:
+      - '3001'
+    ports:
+      - '3001:3001'
+    networks:
+      - autofox
+    environment:
+      - NODE_ENV=dev
+    command: npm run start:dev
+    depends_on:
+      - mssql.autofox.local
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 8G
+        reservations:
+          cpus: '2'
+          memory: 2G
+
+  mssql.autofox.local:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: mssql.autofox.local
+    ports:
+      - 11433:1433
+    volumes:
+      - ./data/mssql-data:/var/opt/mssql/data
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=saPassword1%
+    restart: unless-stopped
+    tty: true
+
+    networks:
+      - autofox
+
+networks:
+  autofox:
+    name: autofox
+    driver: bridge

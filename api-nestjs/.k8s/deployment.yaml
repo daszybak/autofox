@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-nest-deployment
+spec:
+  selector:
+    matchLabels:
+      app: api-nest
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/path: '/metrics'
+        prometheus.io/port: '8080'
+      labels:
+        app: api-nest
+    spec:
+      containers:
+        - name: api-nest-app
+          image: autofox.azurecr.io/apinestjs:22
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3001
+          resources:
+            requests:
+              memory: '200Mi'
+              cpu: '200m'
+            limits:
+              memory: '250Mi'
+              cpu: '250m'
+
+          env:
+            - name: KEYCLOAK_COOKIE_KEY
+              value: 'KEYCLOAK_JWT'
+
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  key: DATABASE_URL
+                  name: apinestjs-env
+
+            - name: KEYCLOAK_AUTH_SERVER_URL
+              valueFrom:
+                secretKeyRef:
+                  key: KEYCLOAK_AUTH_SERVER_URL
+                  name: apinestjs-env
+            - name: KEYCLOAK_REALM
+              valueFrom:
+                secretKeyRef:
+                  key: KEYCLOAK_REALM
+                  name: apinestjs-env
+            - name: KEYCLOAK_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  key: KEYCLOAK_CLIENT_ID
+                  name: apinestjs-env
+            - name: KEYCLOAK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: KEYCLOAK_SECRET
+                  name: apinestjs-env
+
+            - name: AZURE_BLOB_ACCOUNT_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: AZURE_BLOB_ACCOUNT_NAME
+                  name: apinestjs-env
+            - name: AZURE_BLOB_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: AZURE_BLOB_KEY
+                  name: apinestjs-env
+            - name: AZURE_BLOB_CONTAINER_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: AZURE_BLOB_CONTAINER_NAME
+                  name: apinestjs-env
+            - name: AZURE_BLOB_SIGNATURE_EXPIRATION
+              valueFrom:
+                secretKeyRef:
+                  key: AZURE_BLOB_SIGNATURE_EXPIRATION
+                  name: apinestjs-env

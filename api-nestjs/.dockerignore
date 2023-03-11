@@ -1,0 +1,14 @@
+Dockerfile
+.dockerignore
+node_modules
+npm-debug.log
+README.md
+dist
+.git
+documentation
+.env.example
+.env
+README.md
+data/*.sqlite
+data/mysql-files/*
+!data/mysql-files/.gitkeep

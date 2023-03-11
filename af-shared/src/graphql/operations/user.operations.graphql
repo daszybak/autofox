@@ -1,0 +1,23 @@
+query FindUniqueUserWhereUserIdEquals($where: UserWhereUniqueInput!) {
+	findUniqueUser(where: $where) {
+		...userInfoFields
+		ads {
+			...adFields
+			ad_auto {
+				...adAutoFields
+			}
+		}
+	}
+}
+
+query FindAllUsers($where: UserWhereInput, $orderBy: [UserOrderByWithRelationInput!], $cursor: UserWhereUniqueInput, $take: Int, $skip: Int) {
+	findAllUsers(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take, skip: $skip) {
+		...userInfoFields
+		ads {
+			...adFields
+			ad_auto {
+				...adAutoFields
+			}
+		}
+	}
+}

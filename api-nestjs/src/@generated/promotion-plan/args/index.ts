@@ -1,0 +1,12 @@
+export { CreateManyPromotionPlanArgs } from './create-many-promotion-plan.args';
+export { CreateOnePromotionPlanArgs } from './create-one-promotion-plan.args';
+export { DeleteManyPromotionPlanArgs } from './delete-many-promotion-plan.args';
+export { DeleteOnePromotionPlanArgs } from './delete-one-promotion-plan.args';
+export { FindFirstPromotionPlanArgs } from './find-first-promotion-plan.args';
+export { FindManyPromotionPlanArgs } from './find-many-promotion-plan.args';
+export { FindUniquePromotionPlanArgs } from './find-unique-promotion-plan.args';
+export { PromotionPlanAggregateArgs } from './promotion-plan-aggregate.args';
+export { PromotionPlanGroupByArgs } from './promotion-plan-group-by.args';
+export { UpdateManyPromotionPlanArgs } from './update-many-promotion-plan.args';
+export { UpdateOnePromotionPlanArgs } from './update-one-promotion-plan.args';
+export { UpsertOnePromotionPlanArgs } from './upsert-one-promotion-plan.args';

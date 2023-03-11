@@ -1,0 +1,12 @@
+export { CreateManyListArgs } from './create-many-list.args';
+export { CreateOneListArgs } from './create-one-list.args';
+export { DeleteManyListArgs } from './delete-many-list.args';
+export { DeleteOneListArgs } from './delete-one-list.args';
+export { FindFirstListArgs } from './find-first-list.args';
+export { FindManyListArgs } from './find-many-list.args';
+export { FindUniqueListArgs } from './find-unique-list.args';
+export { ListAggregateArgs } from './list-aggregate.args';
+export { ListGroupByArgs } from './list-group-by.args';
+export { UpdateManyListArgs } from './update-many-list.args';
+export { UpdateOneListArgs } from './update-one-list.args';
+export { UpsertOneListArgs } from './upsert-one-list.args';

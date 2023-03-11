@@ -1,0 +1,19 @@
+{
+	"hero": {
+		"title": "Title",
+		"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+	},
+	"new-deals": "New Deals",
+	"top-deals": "Top Deals",
+	"top-sellers": "Top Sellers",
+	"trending": "Trending",
+	"blog-posts": {
+		"title": "Latest From Automotive World",
+		"button": "View All"
+	},
+	"price-estimate": {
+		"title": "How much is your vehicle worth?",
+		"text": "Free and instant estimate of your vehicle's price",
+		"button": "Start Valuation"
+	}
+}

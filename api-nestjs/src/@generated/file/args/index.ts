@@ -1,0 +1,12 @@
+export { CreateManyFileArgs } from './create-many-file.args';
+export { CreateOneFileArgs } from './create-one-file.args';
+export { DeleteManyFileArgs } from './delete-many-file.args';
+export { DeleteOneFileArgs } from './delete-one-file.args';
+export { FileAggregateArgs } from './file-aggregate.args';
+export { FileGroupByArgs } from './file-group-by.args';
+export { FindFirstFileArgs } from './find-first-file.args';
+export { FindManyFileArgs } from './find-many-file.args';
+export { FindUniqueFileArgs } from './find-unique-file.args';
+export { UpdateManyFileArgs } from './update-many-file.args';
+export { UpdateOneFileArgs } from './update-one-file.args';
+export { UpsertOneFileArgs } from './upsert-one-file.args';

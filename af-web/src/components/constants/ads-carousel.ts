@@ -1,0 +1,2 @@
+export const ADS_CAROUSEL_LENGTH_SSG = 3;
+export const ADS_CAROUSEL_LENGTH_CLIENT = 12;

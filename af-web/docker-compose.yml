@@ -1,0 +1,38 @@
+version: '3'
+services:
+  web.autofox.local:
+    build:
+      args:
+        - NODE_ENV=development
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./public:/app/public
+      - ./src:/app/src
+
+      - ../af-shared/src:/app/af-shared/src
+      - ../af-shared/lib:/app/af-shared/lib
+      - ../af-shared/tsconfig.json:/app/af-shared/tsconfig.json
+      - ../af-shared/package.json:/app/af-shared/package.json
+    expose:
+      - '3000'
+    ports:
+      - '3000:3000'
+    networks:
+      - autofox
+    environment:
+      - NODE_ENV=development
+    command: sh -c "npm link ./af-shared && yarn dev"
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 8G
+        reservations:
+          cpus: '2'
+          memory: 2G
+
+networks:
+  autofox:
+    name: autofox
+    driver: bridge

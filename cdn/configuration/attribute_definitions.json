@@ -1,0 +1,178 @@
+[
+	{
+		"categoryCode": "AdAutoConditionType",
+		"inputType": "select",
+		"model": "AdAuto",
+		"attribute": "condition_type_cid",
+		"dataType": "Category"
+	},
+	{
+		"categoryCode": "AdAutoVehicleType",
+		"inputType": "select",
+		"model": "AdAuto",
+		"attribute": "vehicle_type_cid",
+		"dataType": "Category"
+	},
+	{
+		"categoryCode": "AdAutoMake",
+		"inputType": "select",
+		"model": "AdAuto",
+		"attribute": "make_cid",
+		"dataType": "Category"
+	},
+	{
+		"categoryCode": "AdAutoModel",
+		"inputType": "select",
+		"model": "AdAuto",
+		"attribute": "model_cid",
+		"dataType": "Category"
+	},
+	{
+		"categoryCode": "AdAutoVariant",
+		"inputType": "select",
+		"model": "AdAuto",
+		"attribute": "variant_cid",
+		"dataType": "Category"
+	},
+	{
+		"categoryCode": "AdAutoFuelType",
+		"inputType": "select",
+		"model": "AdAuto",
+		"attribute": "fuel_type_cid",
+		"dataType": "Category"
+	},
+	{
+		"categoryCode": "AdAutoTransmissionType",
+		"inputType": "select",
+		"model": "AdAuto",
+		"attribute": "transmission_type_cid",
+		"dataType": "Category"
+	},
+	{
+		"categoryCode": "AdAutoBodyType",
+		"inputType": "checkbox",
+		"model": "AdAuto",
+		"attribute": "body_type_cid",
+		"dataType": "Category"
+	},
+	{
+		"categoryCode": "AdAutoEmissionClass",
+		"inputType": "select",
+		"model": "AdAuto",
+		"attribute": "emission_class_cid",
+		"dataType": "Category"
+	},
+	{
+		"categoryCode": "AdAutoConditioning",
+		"inputType": "checkbox",
+		"model": "AdAuto",
+		"attribute": "conditioning_cid",
+		"dataType": "Category"
+	},
+	{
+		"categoryCode": "AdAutoColorInterior",
+		"inputType": "checkbox",
+		"model": "AdAuto",
+		"attribute": "color_interior_cid",
+		"dataType": "Category"
+	},
+	{
+		"categoryCode": "AdAutoColorExterior",
+		"inputType": "checkbox",
+		"model": "AdAuto",
+		"attribute": "color_exterior_cid",
+		"dataType": "Category"
+	},
+	{
+		"categoryCode": null,
+		"inputType": "range",
+		"model": "AdAuto",
+		"attribute": "year",
+		"dataType": "int",
+		"options": [1970, 1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023]
+	},
+	{
+		"categoryCode": null,
+		"inputType": "range",
+		"model": "AdAuto",
+		"attribute": "power_kw",
+		"dataType": "int",
+		"options": [35, 50, 75, 100, 125, 150, 200, 250]
+	},
+	{
+		"categoryCode": null,
+		"inputType": "range",
+		"model": "AdAuto",
+		"attribute": "km",
+		"dataType": "int",
+		"options": [5000, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 150000, 200000]
+	},
+	{
+		"categoryCode": null,
+		"inputType": "range",
+		"model": "Ad",
+		"attribute": "price_eurocent",
+		"dataType": "int",
+		"options": [5000, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000]
+	},
+	{
+		"categoryCode": null,
+		"inputType": "range",
+		"model": "AdAuto",
+		"attribute": "registered_until",
+		"dataType": "DateTime"
+	},
+	{
+		"categoryCode": null,
+		"inputType": "select",
+		"model": "AdAuto",
+		"attribute": "doors_num",
+		"dataType": "int",
+		"options": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+	},
+	{
+		"categoryCode": null,
+		"inputType": "select",
+		"model": "AdAuto",
+		"attribute": "seats_num",
+		"dataType": "int",
+		"options": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+	},
+	{
+		"categoryCode": null,
+		"inputType": "checkbox",
+		"model": "AdAuto",
+		"attribute": "is_first_owner",
+		"dataType": "boolean"
+	},
+	{
+		"categoryCode": null,
+		"inputType": "checkbox",
+		"model": "AdAuto",
+		"attribute": "is_service_book_available",
+		"dataType": "boolean"
+	},
+	{
+		"categoryCode": null,
+		"inputType": "checkbox",
+		"model": "AdAuto",
+		"attribute": "is_vehicle_garaged",
+		"dataType": "boolean"
+	},
+	{
+		"categoryCode": null,
+		"inputType": "range",
+		"model": "AdAuto",
+		"attribute": "engine_displacement_cm3",
+		"dataType": "int",
+		"options": [1000, 1200, 1400, 1600, 1800, 2000, 2600, 3000, 5000, 7500, 9000]
+	},
+	{
+		"categoryCode": null,
+		"inputType": "range",
+		"model": "AdAuto",
+		"attribute": "battery_capacity_kwh",
+		"dataType": "int",
+		"options": [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+	}
+]

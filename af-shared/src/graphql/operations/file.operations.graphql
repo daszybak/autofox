@@ -1,0 +1,8 @@
+query GetSASToken($filename: String!) {
+	getSASToken(data: { filename: $filename }) {
+		url
+		blobName
+		startsOn
+		expiresOn
+	}
+}

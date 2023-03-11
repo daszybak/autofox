@@ -1,0 +1,22 @@
+{
+	"i18next.i18nPaths": "c:/Users/kdjel/Desktop/work/af-web/public/locales",
+	"eslint.packageManager": "yarn",
+	"eslint.runtime": "",
+	"sqltools.connections": [
+		{
+			"mssqlOptions": {
+				"appName": "SQLTools",
+				"useUTC": true,
+				"encrypt": true
+			},
+			"previewLimit": 50,
+			"server": "0.0.0.0",
+			"port": 11433,
+			"askForPassword": true,
+			"driver": "MSSQL",
+			"name": "autofoxdb",
+			"database": "tempdb",
+			"username": "sa"
+		}
+	]
+}

@@ -1,0 +1,15 @@
+export const COLORS: Record<string, string> = {
+	beige: '#dbb67f',
+	brown: '#855e1b',
+	gold: '#d39a11 linear-gradient(135deg,#d39a11,#f6d308 50%,#d39a11)',
+	green: '#7eba30',
+	red: '#ff4040',
+	silver: '#b5b5b5 linear-gradient(135deg,#b5b5b5,#f6f6f6 50%,#ccc)',
+	white: '#fff',
+	blue: '#376edb',
+	yellow: '#f5d300',
+	grey: '#ababab',
+	orange: '#ff7f23',
+	black: '#333',
+	purple: '#9361ff',
+} as const;
